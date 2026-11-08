@@ -49,15 +49,24 @@ button{cursor:pointer}
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* masthead */
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:linear-gradient(160deg,var(--hdr2),var(--hdr) 70%);color:var(--hdr-ink);box-shadow:0 2px 14px rgba(40,5,20,.25)}
-.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:16px 6px}
-.brand{display:flex;align-items:center;gap:12px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;color:var(--hdr-ink);box-shadow:0 4px 20px rgba(40,5,20,.28);
+  background:
+    repeating-linear-gradient(45deg,transparent 0 22px,rgba(233,195,122,.07) 22px 23px),
+    repeating-linear-gradient(-45deg,transparent 0 22px,rgba(233,195,122,.07) 22px 23px),
+    linear-gradient(160deg,var(--hdr2),var(--hdr) 70%);
+  border-bottom:2px solid var(--gold)}
+.seal{background:radial-gradient(circle at 35% 30%,#fbe6b4,var(--gold) 55%,#b8862f);color:var(--hdr)!important;border:2px solid #fff3d6!important;box-shadow:0 0 0 3px rgba(233,195,122,.25),0 4px 12px rgba(0,0,0,.25)}
+.mast{display:flex;flex-direction:column;align-items:center;gap:6px;padding-block:16px 8px;text-align:center}
+.brand{display:flex;align-items:center;justify-content:center;gap:12px}
+.logo{width:54px;height:54px;flex:none;filter:drop-shadow(0 3px 8px rgba(0,0,0,.3))}
+.orn{color:var(--gold);font-size:.42em;vertical-align:.5em;margin-inline:.35em;opacity:.8}
 .seal{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:22px;color:var(--gold);flex:none}
 .mast h1{font-family:var(--display);font-weight:900;font-size:clamp(26px,5.5vw,36px);margin:0;line-height:1}
-.mast h1 span{color:var(--gold)}
+.mast h1 .gold{color:var(--gold)}
+.mast h1{letter-spacing:.02em;text-shadow:0 2px 10px rgba(0,0,0,.25)}
 .sub{font-size:13px;opacity:.75;margin-top:2px}
-.today{font-family:var(--display);font-size:15px;color:var(--gold);text-align:left}
-.tabs{display:flex;gap:2px}
+.today{font-family:var(--display);font-size:15px;color:var(--gold);text-align:center;display:flex;gap:6px 14px;flex-wrap:wrap;justify-content:center;align-items:center}
+.tabs{display:flex;gap:2px;justify-content:center}
 .tab{background:none;border:0;padding:10px 16px 11px;font-weight:700;color:var(--hdr-ink);opacity:.65;font-size:16px;border-radius:10px 10px 0 0}
 .tab[aria-selected="true"]{opacity:1;background:var(--bg);color:var(--ink)}
 .tab .n{font-size:12px;font-weight:700;background:var(--gold);color:#3a1a05;border-radius:999px;padding:0 7px;margin-inline-start:6px}
@@ -67,8 +76,8 @@ main{padding-block:20px 90px}
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
-.stat{background:var(--surface);border-radius:12px;padding:14px 16px;border:1px solid var(--line);position:relative;overflow:hidden;min-width:0}
-.stat::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--tone)}
+.stat{background:color-mix(in srgb,var(--tone) 9%,var(--surface));border-radius:14px;padding:14px 16px;border:1px solid color-mix(in srgb,var(--tone) 22%,transparent);position:relative;overflow:hidden;min-width:0}
+.stat::before{content:"";position:absolute;inset:auto auto -26px -26px;width:84px;height:84px;border-radius:50%;background:var(--tone);opacity:.1}
 .stat small{display:block;color:var(--muted);font-size:13px;font-weight:600}
 .stat b{display:block;font-family:var(--display);font-size:clamp(22px,4.5vw,30px);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2;color:var(--tone);margin-top:2px}
 .stat i{display:block;font-style:normal;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -113,6 +122,41 @@ main{padding-block:20px 90px}
 .row.past{opacity:.78}
 .row.cancel .who .t{text-decoration:line-through;color:var(--muted)}
 
+
+/* hero: next simcha */
+.hero{position:relative;overflow:hidden;border-radius:20px;padding:22px 22px 20px;margin-bottom:14px;color:#fff;
+  background:
+    radial-gradient(circle at 12% 120%,rgba(255,255,255,.18),transparent 45%),
+    repeating-linear-gradient(45deg,transparent 0 18px,rgba(255,255,255,.05) 18px 19px),
+    linear-gradient(135deg,color-mix(in srgb,var(--tc) 82%,#000),color-mix(in srgb,var(--tc) 42%,#12040b));
+  box-shadow:0 12px 30px color-mix(in srgb,var(--tc) 35%,transparent);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.hero .hi{font-size:14px;opacity:.9;font-weight:700}
+.hero .lbl{font-size:12px;font-weight:800;letter-spacing:.06em;color:#ffe9b8;margin-top:10px}
+.hero h2{font-family:var(--display);font-size:clamp(24px,5vw,34px);margin:2px 0 4px;line-height:1.15;text-wrap:balance}
+.hero .meta{font-size:14px;opacity:.92;overflow-wrap:anywhere}
+.hero .count{text-align:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:12px 18px;min-width:104px;backdrop-filter:blur(2px)}
+.hero .count b{display:block;font-family:var(--display);font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.hero .count span{font-size:13px;font-weight:700}
+.hero .open{grid-column:1/-1;justify-self:start;background:#fff;color:var(--tc);border:0;border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px}
+.hero.none{--tc:var(--accent)}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.hero .count{justify-self:start;display:flex;align-items:baseline;gap:8px;padding:8px 14px}.hero .count b{font-size:32px}}
+
+/* gate (verify / locked) */
+.gate{display:flex;flex-direction:column;gap:12px}
+.gate .big{font-size:42px;line-height:1}
+.gate h3{font-family:var(--display);font-size:24px;margin:0;text-align:center}
+.gate p{font-size:15px}
+.gate .em{direction:ltr;font-weight:800;color:var(--ink);background:var(--bg);border-radius:8px;padding:6px 10px;display:inline-block}
+
+/* access manager */
+.acc{display:flex;flex-direction:column;gap:8px}
+.accRow{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.accRow .who2{min-width:0;flex:1}
+.accRow .who2 b{display:block}
+.accRow .who2 span{display:block;direction:ltr;text-align:right;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.accRow .x{background:none;border:0;color:var(--accent);font-weight:800}
+.accAdd{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
+@media (max-width:560px){.accAdd{grid-template-columns:1fr}}
 /* simcha type colors */
 [data-type="חתונה"]{--tc:var(--c-wed)} [data-type="שבע ברכות"]{--tc:var(--c-sheva)} [data-type="בר מצוה"]{--tc:var(--c-bar)}
 [data-type="ווארט / תנאים"]{--tc:var(--c-vort)} [data-type="פורים"]{--tc:var(--c-purim)} [data-type="מלוה מלכה"]{--tc:var(--c-mm)}
@@ -171,15 +215,23 @@ textarea{resize:vertical;line-height:1.6}
   .grid2{grid-template-columns:1fr}
   .bar .add{display:none}
   .fab{display:block;position:fixed;left:calc(18px + env(safe-area-inset-left,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;font-size:30px;line-height:1;padding:0;z-index:6}
-  .today{text-align:right}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 #who{font-family:var(--body);font-size:13px;color:var(--hdr-ink);opacity:.9;margin-top:2px}
 .linkbtn{background:none;border:0;padding:0;color:var(--gold);font-weight:700;text-decoration:underline;font-size:inherit}
 .linkbtn.dark{color:var(--accent);font-size:14px}
-#login{position:fixed;inset:0;z-index:30;overflow-y:auto;background:linear-gradient(160deg,var(--hdr2),var(--hdr) 70%);display:grid;place-items:center;padding:20px max(16px,env(safe-area-inset-left,0px))}
-.loginCard{background:var(--surface);color:var(--ink);border-radius:18px;padding:28px 24px;width:min(400px,100%);display:flex;flex-direction:column;gap:12px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+#login{position:fixed;inset:0;z-index:30;overflow-y:auto;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px));
+  background:
+    radial-gradient(circle at 20% 10%,rgba(233,195,122,.22),transparent 40%),
+    radial-gradient(circle at 85% 95%,rgba(240,115,156,.22),transparent 45%),
+    repeating-linear-gradient(45deg,transparent 0 26px,rgba(233,195,122,.08) 26px 27px),
+    repeating-linear-gradient(-45deg,transparent 0 26px,rgba(233,195,122,.08) 26px 27px),
+    linear-gradient(160deg,var(--hdr2),var(--hdr) 70%)}
+.logo.big{width:92px;height:92px;margin:0 auto}
+.loginCard .tagline{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--gold);margin-top:-6px}
+.lock{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700;color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:999px;padding:5px 12px;align-self:center}
+.loginCard{background:var(--surface);color:var(--ink);border-radius:22px;padding:30px 24px;border-top:5px solid var(--gold);width:min(400px,100%);display:flex;flex-direction:column;gap:12px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
 .loginCard .seal{margin:0 auto;color:var(--accent);border-color:var(--accent)}
 .loginCard h2{font-family:var(--display);font-size:30px;margin:0}
 .loginCard h3{font-family:var(--display);font-size:20px;margin:6px 0 0;text-align:right}
@@ -197,17 +249,43 @@ textarea{resize:vertical;line-height:1.6}
 <body>
 
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lgGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1c9"/><stop offset=".45" stop-color="#e9c37a"/><stop offset="1" stop-color="#a8741f"/>
+    </linearGradient>
+    <linearGradient id="lgQuill" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f4d9a0"/>
+    </linearGradient>
+  </defs>
+  <symbol id="logo" viewBox="0 0 72 72">
+    <circle cx="36" cy="36" r="34" fill="#5a0f2a" stroke="url(#lgGold)" stroke-width="2.5"/>
+    <circle cx="36" cy="36" r="29.5" fill="none" stroke="#e9c37a" stroke-opacity=".45" stroke-width="1" stroke-dasharray="2 3"/>
+    <path d="M14 26 Q24 21.5 34.5 26 V52 Q24 47.5 14 52 Z" fill="url(#lgGold)"/>
+    <path d="M37.5 26 Q48 21.5 58 26 V52 Q48 47.5 37.5 52 Z" fill="url(#lgGold)"/>
+    <path d="M36 26.5 V53" stroke="#5a0f2a" stroke-width="1.6"/>
+    <g stroke="#7a1638" stroke-width="1.3" stroke-linecap="round" opacity=".55">
+      <path d="M18 31.5 Q24 29.5 31 31.5"/><path d="M18 36.5 Q24 34.5 31 36.5"/><path d="M18 41.5 Q24 39.5 31 41.5"/><path d="M18 46.5 Q23 45 27 46"/>
+      <path d="M41 36.5 Q46 34.8 50 36"/><path d="M41 41.5 Q47 39.5 54 41.5"/><path d="M41 46.5 Q47 44.5 54 46.5"/>
+    </g>
+    <path d="M58 9 C49 13 43 22 40.5 34.5 L42.6 35.2 C46.5 24 51.5 16 58 9 Z" fill="url(#lgQuill)" stroke="#a8741f" stroke-width=".6"/>
+    <path d="M57 10.5 L41.6 34.8" stroke="#a8741f" stroke-width=".7"/>
+    <path d="M40.5 34.5 L39.4 38.6 L42.6 35.2 Z" fill="#2b0915"/>
+    <path d="M20 12.5 l1.3 3.4 3.4 1.3 -3.4 1.3 -1.3 3.4 -1.3 -3.4 -3.4 -1.3 3.4 -1.3 Z" fill="#e9c37a"/>
+    <circle cx="27.5" cy="15" r="1.1" fill="#e9c37a" opacity=".8"/>
+  </symbol>
+</svg>
 <header>
   <div class="wrap">
     <div class="mast">
       <div class="brand">
-        <div class="seal">ב</div>
-        <div><h1>בדחן <span>פנקס</span></h1><div class="sub">אייער פריוואטער פנקס · קיינער אנדערש זעט עס נישט</div></div>
+        <svg class="logo" aria-hidden="true"><use href="#logo"/></svg>
+        <h1><span class="orn">✦</span>בדחן <span class="gold">פנקס</span><span class="orn">✦</span></h1>
       </div>
-      <div class="today"><div id="today"></div><div id="who" hidden><span id="whoName"></span> · <button id="gLink" class="linkbtn" hidden>פארבינד מיט Google</button> <button id="logout" class="linkbtn">ארויסשרייבן</button></div></div>
+      <div class="today"><div id="today"></div><div id="who" hidden><span id="whoName"></span> · <button id="accBtn" class="linkbtn" hidden>צוטריט</button> <button id="gLink" class="linkbtn" hidden>פארבינד מיט Google</button> <button id="logout" class="linkbtn">ארויסשרייבן</button></div></div>
     </div>
     <nav class="tabs" role="tablist">
-      <button class="tab" role="tab" id="tabB" aria-selected="true" data-view="bookings">באאקינגס<span class="n" id="nB">0</span></button>
+      <button class="tab" role="tab" id="tabB" aria-selected="true" data-view="bookings">באקינגס<span class="n" id="nB">0</span></button>
       <button class="tab" role="tab" id="tabL" aria-selected="false" data-view="library">ביבליאטעק<span class="n" id="nL">0</span></button>
     </nav>
   </div>
@@ -217,6 +295,7 @@ textarea{resize:vertical;line-height:1.6}
   <div class="notice" id="notice" hidden></div>
 
   <section id="vBookings">
+    <div class="hero none" id="hero"><div><div class="hi" id="hHi">ברוכים הבאים</div><div class="lbl">קומענדיגע שמחה</div><h2 id="hTitle">לאדנט…</h2><div class="meta" id="hMeta">&nbsp;</div></div><div class="count" id="hCount" hidden><b id="hDays">0</b><span id="hUnit">טעג</span></div><button class="open" id="hOpen" hidden>עפן</button></div>
     <div class="stats">
       <div class="stat t1"><small>קומענדיגע שמחה</small><b id="sNext">—</b><i id="sNextWho">&nbsp;</i></div>
       <div class="stat t2"><small>שמחות פאראויס</small><b id="sUp">0</b><i id="sMonth">&nbsp;</i></div>
@@ -232,9 +311,9 @@ textarea{resize:vertical;line-height:1.6}
         <button class="chip" aria-pressed="false" data-f="all">אלע</button>
       </div>
       <div class="spacer"></div>
-      <button class="add" id="addB">+ נייע באאקינג</button>
+      <button class="add" id="addB">+ נייע באקינג</button>
     </div>
-    <div id="bList"><div class="empty"><strong>לאדנט…</strong>די באאקינגס קומען באלד</div></div>
+    <div id="bList"><div class="empty"><strong>לאדנט…</strong>די באקינגס קומען באלד</div></div>
   </section>
 
   <section id="vLibrary" hidden>
@@ -249,7 +328,7 @@ textarea{resize:vertical;line-height:1.6}
 <button class="add fab" id="fab" aria-label="צולייגן">+</button>
 
 <dialog id="dB">
-  <div class="dhead"><h2 id="dBt">נייע באאקינג</h2><div id="dBh"></div></div>
+  <div class="dhead"><h2 id="dBt">נייע באקינג</h2><div id="dBh"></div></div>
   <form class="dlg" id="fB">
     <div class="typepick" id="bTypes"></div>
     <div class="grid2">
@@ -300,11 +379,26 @@ textarea{resize:vertical;line-height:1.6}
 
 <div class="toast" id="toast" hidden></div>
 
+<dialog id="dA">
+  <div class="dhead"><h2>צוטריט</h2><div>נאר די אימעילס דא קענען אריינקומען. יעדער זעט נאר זיין אייגענעם פנקס.</div></div>
+  <form class="dlg" id="fA">
+    <div class="acc" id="accList"><div class="empty">לאדנט…</div></div>
+    <div class="accAdd">
+      <label>נאמען<input id="aName" placeholder="ר' יואל"></label>
+      <label>אימעיל<input id="aEmail" type="email" required dir="ltr" placeholder="name@gmail.com"></label>
+      <button class="add" type="submit">+ צולייגן</button>
+    </div>
+    <div class="acts"><button class="ghost" type="button" data-close>פארמאכן</button></div>
+  </form>
+</dialog>
+
 <div id="login" hidden>
   <div class="loginCard">
-    <div class="seal">ב</div>
-    <h2>בדחן פנקס</h2>
-    <p>א פריוואטער פנקס פאר יעדן בדחן: באאקינגס, חשבונות, גראמען און תורות.</p>
+    <svg class="logo big" aria-hidden="true"><use href="#logo"/></svg>
+    <h2>בדחן <span style="color:var(--gold)">פנקס</span></h2>
+    <div class="tagline">שמחות · חשבונות · גראמען</div>
+    <div id="lgMain" class="gate">
+    <div class="lock">🔒 נאר פאר איינגעלאדענע בדחנים</div>
     <button class="gbtn" type="button" id="gSign"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span>Sign in with Google</span></button>
     <div class="or"><span>אדער מיט אימעיל</span></div>
     <h3 id="lgTitle">אריינשרייבן</h3>
@@ -316,6 +410,20 @@ textarea{resize:vertical;line-height:1.6}
     </form>
     <div id="loginMsg" class="loginMsg"></div>
     <div class="lgLinks"><button class="linkbtn dark" type="button" id="toggle">מאך א נייעם אקאונט</button><button class="linkbtn dark" type="button" id="forgot">פארגעסן דעם פאסווארט?</button></div>
+    </div>
+    <div id="gVerify" class="gate" hidden>
+      <div class="big">✉️</div><h3>באשטעטיגט אייער אימעיל</h3>
+      <p>מיר האבן געשיקט אן אימעיל צו <span class="em" id="vEmail"></span>. עפנט עס און דריקט אויפ'ן לינק (קוקט אויך אין Spam). דערנאך קומט צוריק אהער.</p>
+      <button class="add" type="button" id="vDone">איך האב באשטעטיגט — ווייטער</button>
+      <div class="lgLinks"><button class="linkbtn dark" type="button" id="vResend">שיק נאכאמאל</button><button class="linkbtn dark" type="button" data-out>ארויסשרייבן</button></div>
+      <div class="loginMsg" id="vMsg"></div>
+    </div>
+    <div id="gLocked" class="gate" hidden>
+      <div class="big">🔒</div><h3>דער פנקס איז פריוואט</h3>
+      <p>נאר בדחנים וואס זענען איינגעלאדן קענען אריינקומען. דער אימעיל <span class="em" id="kEmail"></span> איז נישט אויף דער רשימה.</p>
+      <p>אויב מען האט אייך איינגעלאדן, שרייבט אייך איין מיט דעם זעלבן אימעיל וואס מען האט צוגעלייגט.</p>
+      <button class="ghost" type="button" data-out>ארויסשרייבן און פרובירן אן אנדער אימעיל</button>
+    </div>
   </div>
 </div>
 
@@ -349,11 +457,13 @@ let bookings=[],library=[],bFilter="up",lKind="",store=null,view="bookings";
 
 /* ================= SETTINGS — paste your Firebase details here ================= */
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAWCeA7dvCTzcaLqFsWSkXFCdCntUPOX2Y",
-  authDomain: "badchan-website.firebaseapp.com",
-  projectId: "badchan-website",
-  appId: "1:511512923833:web:015ecc41b78099ba38d568"
+  apiKey: "PASTE_HERE",
+  authDomain: "PASTE_HERE",
+  projectId: "PASTE_HERE",
+  appId: "PASTE_HERE"
 };
+// The owner: only this email can invite badchanim (must match firestore.rules)
+const OWNER_EMAIL = "schweitzereli774@gmail.com";
 /* ============================================================================== */
 
 /* each badchan's book lives at users/<his uid>/bookings and users/<his uid>/library — the rules let only him in */
@@ -397,10 +507,21 @@ function setMode(up){signup=up;
   }
   firebase.initializeApp(FIREBASE_CONFIG);
   const fdb=firebase.firestore(),auth=firebase.auth();
-  auth.onAuthStateChanged(u=>{
-    unsubs.forEach(f=>f());unsubs=[];bookings=[];library=[];
-    if(!u){$("#login").hidden=false;$("#who").hidden=true;return}
-    $("#login").hidden=true;$("#who").hidden=false;$("#gLink").hidden=u.providerData.some(p=>p.providerId==="google.com");$("#whoName").textContent=u.displayName||u.email;
+  const screen=w=>{$("#login").hidden=!w;["lgMain","gVerify","gLocked"].forEach(id=>$("#"+id).hidden=id!==w)};
+  let accUnsub=null;
+  auth.onAuthStateChanged(async u=>{
+    unsubs.forEach(f=>f());unsubs=[];bookings=[];library=[];if(accUnsub){accUnsub();accUnsub=null}
+    if(!u){screen("lgMain");$("#who").hidden=true;return}
+    const em=(u.email||"").toLowerCase();
+    if(!u.emailVerified){$("#vEmail").textContent=u.email;screen("gVerify");return}
+    const isOwner=em===OWNER_EMAIL.toLowerCase();
+    if(!isOwner){
+      let ok=false;
+      try{ok=(await fdb.collection("access").doc(em).get()).exists}catch(e){ok=false}
+      if(!ok){$("#kEmail").textContent=u.email;screen("gLocked");return}
+    }
+    $("#accBtn").hidden=!isOwner;
+    screen(null);$("#login").hidden=true;$("#who").hidden=false;$("#gLink").hidden=u.providerData.some(p=>p.providerId==="google.com");$("#whoName").textContent=u.displayName||u.email;
     store=makeFireStore(fdb,u.uid);
     const timer=setTimeout(()=>showNotice("די דאטא נעמט לאנג צו לאדן. קוקט אויב דער אינטערנעט ארבעט."),10000);
     const clear=()=>{clearTimeout(timer);showNotice("")};
@@ -411,7 +532,7 @@ function setMode(up){signup=up;
     $("#loginMsg").textContent="";$("#lgGo").disabled=true;
     const em=$("#lgEmail").value.trim(),pw=$("#lgPass").value;
     try{
-      if(signup){const c=await auth.createUserWithEmailAndPassword(em,pw);await c.user.updateProfile({displayName:$("#lgName").value.trim()});$("#whoName").textContent=$("#lgName").value.trim()}
+      if(signup){const c=await auth.createUserWithEmailAndPassword(em,pw);await c.user.updateProfile({displayName:$("#lgName").value.trim()});try{await c.user.sendEmailVerification()}catch(e){}}
       else await auth.signInWithEmailAndPassword(em,pw);
     }catch(err){$("#loginMsg").textContent=AUTH_ERR[err.code]||"עפעס איז נישט געגאנגען. פרובירט נאכאמאל."}
     $("#lgGo").disabled=false;
@@ -423,6 +544,25 @@ function setMode(up){signup=up;
     catch(e){$("#loginMsg").textContent="קען נישט שיקן. קוקט אויב דער אימעיל איז ריכטיג."}
   };
   $("#logout").onclick=()=>auth.signOut();
+  document.querySelectorAll("[data-out]").forEach(b=>b.onclick=()=>auth.signOut());
+  $("#vResend").onclick=async()=>{try{await auth.currentUser.sendEmailVerification();$("#vMsg").textContent="געשיקט ✓"}catch(e){$("#vMsg").textContent="ווארט א מינוט און פרובירט נאכאמאל."}};
+  $("#vDone").onclick=async()=>{const u=auth.currentUser;if(!u)return;await u.reload();
+    if(!auth.currentUser.emailVerified){$("#vMsg").textContent="נאך נישט באשטעטיגט. דריקט אויפ'ן לינק אינעם אימעיל.";return}
+    await auth.currentUser.getIdToken(true);location.reload()};
+  /* access manager (owner only) */
+  const accRender=docs=>{const L=$("#accList");
+    if(!docs.length){L.innerHTML='<div class="empty"><strong>נאך קיינער</strong>לייגט צו דעם ערשטן בדחן אונטן.</div>';return}
+    L.innerHTML=docs.map(d=>`<div class="accRow"><div class="who2"><b>${esc(d.name||"—")}</b><span>${esc(d.id)}</span></div><button type="button" class="x" data-rm="${esc(d.id)}">אראפנעמען</button></div>`).join("")};
+  $("#accBtn").onclick=()=>{
+    if(!accUnsub)accUnsub=fdb.collection("access").onSnapshot(s=>accRender(s.docs.map(d=>({...d.data(),id:d.id}))),()=>{$("#accList").innerHTML='<div class="empty">קען נישט לייענען — קוקט אז די Firebase רעגלען זענען אפדעיטעד.</div>'});
+    $("#dA").showModal()};
+  $("#fA").addEventListener("submit",async e=>{e.preventDefault();
+    const em=$("#aEmail").value.trim().toLowerCase();if(!em)return;
+    try{await fdb.collection("access").doc(em).set({name:$("#aName").value.trim(),added:Date.now()});$("#aEmail").value="";$("#aName").value="";toast("צוגעלייגט ✓")}
+    catch(err){toast("נישט צוגעלייגט — קוקט די Firebase רעגלען")}});
+  $("#accList").addEventListener("click",async e=>{const b=e.target.closest("[data-rm]");if(!b)return;
+    if(!b.classList.contains("armed")){b.classList.add("armed");b.textContent="זיכער?";return}
+    try{await fdb.collection("access").doc(b.dataset.rm).delete();toast("אראפגענומען")}catch(err){toast("נישט אראפגענומען")}});
   const gp=new firebase.auth.GoogleAuthProvider();gp.setCustomParameters({prompt:"select_account"});
   const inApp=/FBAN|FBAV|Instagram|WhatsApp|Line\/|wv\)/i.test(navigator.userAgent);
   $("#gSign").onclick=async()=>{
@@ -444,6 +584,22 @@ function setMode(up){signup=up;
   setMode(false);
 })();
 
+/* ---------- hero ---------- */
+function greet(){const h=new Date().getHours();return h<5?"א גוטע נאכט":h<12?"גוט מארגן":h<17?"גוטן טאג":"גוטן אוונט"}
+function renderHero(up,t){
+  const H=$("#hero"),n=((window.firebase&&firebase.apps.length&&firebase.auth().currentUser?.displayName)||"").split(" ")[0];
+  $("#hHi").textContent=greet()+(n?", "+n:"");
+  const b=up[0];
+  if(!b){H.className="hero none";H.removeAttribute("data-type");$("#hTitle").textContent="קיין שמחות פאראויס";$("#hMeta").textContent="דריקט \"+ נייע באקינג\" צו צולייגן די ערשטע.";$("#hCount").hidden=true;$("#hOpen").hidden=true;return}
+  H.className="hero";H.dataset.type=TYPES.includes(b.type)?b.type:"אנדערע";
+  const d=asDate(b.date),days=Math.round((d-asDate(t))/864e5);
+  $("#hTitle").textContent=b.type+" · "+b.family;
+  $("#hMeta").textContent=[WD[d.getDay()]+", "+heb.format(d),b.time,b.place].filter(Boolean).join(" · ");
+  $("#hCount").hidden=false;
+  $("#hDays").textContent=days===0?"היינט":days;$("#hUnit").textContent=days===0?"":days===1?"טאג":"טעג";
+  $("#hOpen").hidden=false;$("#hOpen").onclick=()=>openB(b);
+}
+
 /* ---------- bookings ---------- */
 const owe=b=>b.status==="off"?0:Math.max(0,(+b.price||0)-(+b.paid||0));
 const when=b=>b.date+(b.time||"");
@@ -461,6 +617,7 @@ function renderB(){
   const got=bookings.filter(b=>b.date.startsWith(yr)&&b.status!=="off");
   $("#sYear").textContent=money(got.reduce((s,b)=>s+(+b.paid||0),0));
   $("#sYearN").textContent=got.length+" שמחות אין "+yr;
+  renderHero(up,t);
   if(up[0]){const days=Math.round((asDate(up[0].date)-asDate(t))/864e5);
     $("#sNext").textContent=days===0?"היינט":days===1?"מארגן":"אין "+days+" טעג";
     $("#sNextWho").textContent=up[0].type+" · "+up[0].family;}
@@ -476,7 +633,7 @@ function renderB(){
 
   const L=$("#bList");
   if(!rows.length){
-    const msg={up:["קיין קומענדיגע שמחות","דריקט \"+ נייע באאקינג\" צו צולייגן די ערשטע."],past:["נאך גארנישט פארביי","דורכגעפירטע שמחות וועלן זיך ווייזן דא."],owe:["קיינער איז נישט שולדיג","אלע באאקינגס זענען אינגאנצן באצאלט."],ask:["אלעס איז באשטעטיגט","קיין אפענע אנפרעגן."],all:["נאך קיין באאקינגס","דריקט \"+ נייע באאקינג\" צו צולייגן די ערשטע."]}[bFilter];
+    const msg={up:["קיין קומענדיגע שמחות","דריקט \"+ נייע באקינג\" צו צולייגן די ערשטע."],past:["נאך גארנישט פארביי","דורכגעפירטע שמחות וועלן זיך ווייזן דא."],owe:["קיינער איז נישט שולדיג","אלע באקינגס זענען אינגאנצן באצאלט."],ask:["אלעס איז באשטעטיגט","קיין אפענע אנפרעגן."],all:["נאך קיין באקינגס","דריקט \"+ נייע באקינג\" צו צולייגן די ערשטע."]}[bFilter];
     L.innerHTML=`<div class="empty"><strong>${msg[0]}</strong>${msg[1]}</div>`;return;
   }
   const groups=[];rows.forEach(b=>{const k=b.date.slice(0,7);const g=groups.at(-1);g&&g.k===k?g.rows.push(b):groups.push({k,rows:[b]})});
@@ -510,7 +667,7 @@ $("#bPrice").oninput=payState;$("#bPaid").oninput=payState;$("#bDate").oninput=h
 $("#paidAll").onclick=()=>{$("#bPaid").value=$("#bPrice").value||0;payState()};
 function openB(b){
   editB=b||null;
-  $("#dBt").textContent=b?(b.family||"באאקינג"):"נייע באאקינג";
+  $("#dBt").textContent=b?(b.family||"באקינג"):"נייע באקינג";
   $("#bDate").value=b?.date||todayISO();$("#bTime").value=b?.time||"";
   pick($("#bTypes"),"type",b?.type||TYPES[0]);$("#bStatus").value=b?.status||"ok";
   $("#bFamily").value=b?.family||"";$("#bPlace").value=b?.place||"";$("#bPhone").value=b?.phone||"";$("#bName").value=b?.name||"";
