@@ -272,6 +272,9 @@ textarea{resize:vertical;line-height:1.65}
 /* date field + picker */
 .dateBtn{display:flex;align-items:center;gap:12px;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;text-align:right}
 .dateBtn:hover{border-color:var(--pri)}
+.dateBtn.need{border:1.5px dashed var(--gold-d);background:var(--gold-s)}
+.dateBtn.need .dv b{color:var(--gold-ink)}
+.dateBtn.need .ci{background:var(--gold);color:#241700}
 .dateBtn .dv{flex:1;min-width:0}
 .dateBtn .dv b{display:block;font-size:16px;font-weight:600;color:var(--ink)}
 .dateBtn .dv span{display:block;font-size:14px;color:var(--muted)}
@@ -488,7 +491,7 @@ textarea{resize:vertical;line-height:1.65}
   <div class="work">
     <div class="pagehead">
       <div class="t">
-        <h1 id="pTitle">ברוכים הבאים</h1>
+        <h1 id="pTitle">באקינגס</h1>
         <div class="dateline"><span class="jd" id="todayJ"></span><span class="sep"></span><span class="gd en" id="todayG"></span></div>
       </div>
       <button class="btn goldb" id="addTop">+ נייע באקינג</button>
@@ -961,7 +964,7 @@ const typeOf=b=>TYPES.includes(b.type)?b.type:"אנדערע";
 function greet(){const h=new Date().getHours();return h<5?"א גוטע נאכט":h<12?"גוט מארגן":h<17?"גוטן טאג":"גוטן אוונט"}
 function renderHero(up,t){
   const n=(auth?.currentUser?.displayName||"").trim();
-  if(view==="bookings")$("#pTitle").textContent=greet()+(n?", "+n:"");
+  
   const H=$("#hero");const b=up[0];
   if(!b){H.classList.add("none");H.removeAttribute("data-type");$("#tile").hidden=true;$("#hTitle").textContent="קיין שמחות פאראויס";
     $("#hMeta").textContent="לייגט צו אייער ערשטע באקינג, און זי וועט זיך ווייזן דא.";$("#hCount").hidden=true;$("#hOpen").hidden=true;return}
@@ -1047,7 +1050,8 @@ $("#bCal").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList
 
 /* ---------- date picker: calendar · type Jewish date · type English date ---------- */
 const dp={sel:"",y:0,m:0,mode:"cal"};
-function setDate(s){dp.sel=s;const d=asDate(s);
+function clearDate(){dp.sel="";$("#bDateJ").textContent="קלייבט א דאטום";$("#bDateG").textContent="דריקט דא צו קלייבן דעם טאג פון דער שמחה";$("#dBh").textContent="";$("#bDateBtn").classList.add("need")}
+function setDate(s){dp.sel=s;$("#bDateBtn").classList.remove("need");const d=asDate(s);
   $("#bDateJ").textContent=jWithDay(d);$("#bDateG").textContent=gFull(d);
   $("#dBh").textContent=jFull(d)+"  ·  "+gMed(d);$("#bErr").textContent=""}
 function renderDP(){
@@ -1101,15 +1105,17 @@ $("#paidAll").onclick=()=>{$("#bPaid").value=$("#bPrice").value||0;payState()};
 function openB(b,dateISO){
   editB=b||null;
   $("#dBt").textContent=b?(b.type+" · "+(b.family||"")):"נייע באקינג";
-  setDate(b?.date||dateISO||todayISO());$("#dp").hidden=true;dp.mode="cal";
+  dp.mode="cal";$("#dp").hidden=true;
+  if(b?.date||dateISO)setDate(b?.date||dateISO);else clearDate();
   $("#bTime").value=b?.time||"";pick($("#bTypes"),"type",b?.type||TYPES[0]);$("#bStatus").value=b?.status||"ok";
   $("#bFamily").value=b?.family||"";$("#bPlace").value=b?.place||"";$("#bPhone").value=b?.phone||"";$("#bName").value=b?.name||"";
   $("#bPrice").value=b?.price||"";$("#bPaid").value=b?.paid||"";$("#bNotes").value=b?.notes||"";
-  payState();disarm($("#bDel"));$("#bDel").hidden=!b;$("#bErr").textContent="";$("#dB").showModal()}
+  payState();disarm($("#bDel"));$("#bDel").hidden=!b;$("#bErr").textContent="";$("#dB").showModal();
+  if(!dp.sel){const t=new Date();dp.y=t.getFullYear();dp.m=t.getMonth();$("#dp").hidden=false;showMode("cal");$("#bDateBtn").focus()}}
 window.openB=openB;
 $("#hAdd").onclick=()=>openB();$("#addTop").onclick=()=>view==="library"?openL():openB();
 $("#fB").addEventListener("submit",async e=>{e.preventDefault();
-  if(!dp.sel){$("#bErr").textContent="קלייבט א דאטום.";return}
+  if(!dp.sel){$("#bErr").textContent="קלייבט א דאטום פאר דער שמחה.";$("#dp").hidden=false;if(dp.mode==="cal")renderDP();$("#bDateBtn").scrollIntoView({block:"center",behavior:"smooth"});return}
   if(!$("#bFamily").value.trim()){$("#bErr").textContent="שרייבט אריין דעם בעל השמחה / משפחה.";$("#bFamily").focus();return}
   if(!store){$("#bErr").textContent="איר זענט נישט איינגעשריבן.";return}
   const data={date:dp.sel,time:$("#bTime").value,type:picked($("#bTypes"),"type")||TYPES[0],status:$("#bStatus").value,
@@ -1157,7 +1163,7 @@ function setView(v){if(!["bookings","calendar","library"].includes(v))v="booking
   $("#vBookings").hidden=v==="library";$("#vLibrary").hidden=v!=="library";
   bView=v==="calendar"?"cal":"list";
   const n=(auth?.currentUser?.displayName||"").trim();
-  $("#pTitle").textContent=v==="library"?"ביבליאטעק":v==="calendar"?"קאלענדאר":greet()+(n?", "+n:"");
+  $("#pTitle").textContent=v==="library"?"ביבליאטעק":v==="calendar"?"קאלענדאר":"באקינגס";
   $("#addTop").textContent=v==="library"?"+ צולייגן א שטיקל":"+ נייע באקינג";
   renderB();window.scrollTo(0,0);
   try{localStorage.setItem("bp_tab",v)}catch(e){}}
