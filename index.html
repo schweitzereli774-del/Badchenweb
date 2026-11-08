@@ -457,10 +457,12 @@ let bookings=[],library=[],bFilter="up",lKind="",store=null,view="bookings";
 
 /* ================= SETTINGS — paste your Firebase details here ================= */
 const FIREBASE_CONFIG = {
-  apiKey: "PASTE_HERE",
-  authDomain: "PASTE_HERE",
-  projectId: "PASTE_HERE",
-  appId: "PASTE_HERE"
+  apiKey: "AIzaSyAWCeA7dvCTzcaLqFsWSkXFCdCntUPOX2Y",
+  authDomain: "badchan-website.firebaseapp.com",
+  projectId: "badchan-website",
+  storageBucket: "badchan-website.firebasestorage.app",
+  messagingSenderId: "511512923833",
+  appId: "1:511512923833:web:015ecc41b78099ba38d568"
 };
 // The owner: only this email can invite badchanim (must match firestore.rules)
 const OWNER_EMAIL = "schweitzereli774@gmail.com";
@@ -486,6 +488,7 @@ const AUTH_ERR={
   "auth/user-not-found":"עס איז נישטא קיין אקאונט מיט דעם אימעיל. דריקט \"מאך א נייעם אקאונט\".",
   "auth/email-already-in-use":"עס איז שוין דא אן אקאונט מיט דעם אימעיל. שרייבט אייך איין.",
   "auth/weak-password":"דער פאסווארט מוז האבן כאטש 6 אותיות.",
+  "auth/api-key-not-valid.-please-pass-a-valid-api-key.":"דער apiKey אין FIREBASE_CONFIG איז נישט ריכטיג.",
   "auth/invalid-email":"דער אימעיל איז נישט ריכטיג געשריבן.",
   "auth/too-many-requests":"צופיל פרואוון. ווארט א פאר מינוט און פרובירט נאכאמאל.",
   "auth/operation-not-allowed":"נייע אקאונטן זענען נישט ערלויבט. בעט דעם בעל הבית אייך צוצולייגן."
